@@ -9,6 +9,6 @@
     <!-- 어노테이션 기반설정 사용 -->
 	<context:annotation-config/>
 	<!-- 컴포넌트 자동등록 -->
-	<context:component-scan base-package="com.bitacademy.myportal.contoller.MainController"></context:component-scan>
+	<context:component-scan base-package="com.bitacademy.myportal.contoller"></context:component-scan>
 	
 </beans>

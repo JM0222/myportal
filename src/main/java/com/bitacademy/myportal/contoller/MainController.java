@@ -1,4 +1,4 @@
-package com.bitacademy.myportal.contoller.MainController;
+package com.bitacademy.myportal.contoller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ public class MainController {
 	public ModelAndView home() {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.setViewName("/WEB-INF/views/home.jsp");
+		mav.setViewName("home");
 		return mav;
 	}
 }
