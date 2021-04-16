@@ -17,9 +17,15 @@
 		<div id="wapper">
 			<div id="content">
 				<div id="site-introduction">
-				
-					<p>Spring으로 만든 홈페이지입니다</p>
-				</div>
+	<h1>회원 가입 성공</h1>
+	<p class="jr-success">
+		회원가입을 축하합니다.
+	</p>
+	<p>
+		<a href="<c:url value="/members/login"/>">로그인하기</a>
+	</p>
+
+			</div>
 			</div>
 		</div>
 	</div>

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>My Portal</title>
 <link rel="stylesheet"
-	href="<c:url value="/assets/css/home.css" />" />
+	href="<c:url value="/assets/css/user.css" />" />
 </head>
 <body>
 	<div id="container">
@@ -18,10 +18,27 @@
 			<div id="content">
 				<div id="site-introduction">
 				
-					<p>Spring으로 만든 홈페이지입니다</p>
-				</div>
+				
+	<form id="login-form" 
+		name="loginform" 
+		method="POST" 
+		action="<c:url value="/members/login"/>">
+		
+		<label class="block-label" for="email">이메일</label> 
+		<input id="email" name="email" type="text" value=""> 
+
+		<label class="block-label">패스워드</label> 
+		<input name="password" type="password" value="">
+
+		<input type="submit" value="로그인">
+	</form>
+	
+	
+	
+    				</div>
 			</div>
 		</div>
+		<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 	</div>
 </body>
 </html>

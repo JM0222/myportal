@@ -7,26 +7,48 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-	<context:annotation-config/>
-	<context:component-scan base-package="com.bitacademy.myportal.service
-	com.bitacademy.myportal.repository">
-		<context:include-filter type="annotation"
-		expression="org.springframework.stereotype.Repository"/>
-		<context:include-filter type="annotation"
-		expression="org.springframework.stereotype.Service"/>
-		<context:include-filter type="annotation"
-		expression="org.springframework.stereotype.Component"/>
-
+	<context:annotation-config />
+	<context:component-scan 
+		base-package="com.bitacademy.myportal.service
+						com.bitacademy.myportal.repository
+						com.bitacademy.myportal.exception">
+		<!-- Service, Repository만 검색 -->
+		<context:include-filter 
+			type="annotation" 
+			expression="org.springframework.stereotype.Service"/>
+		<context:include-filter 
+			type="annotation" 
+			expression="org.springframework.stereotype.Repository"/>
+		<context:include-filter 
+			type="annotation" 
+			expression="org.springframework.stereotype.Component"/>
 	</context:component-scan>
-	<!-- View Resolver -->
-	<bean id="viewResolver"
-		class= "org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name ="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-		<!-- Viewname 접두어 -->	
-		<property name ="prefix" value="/WEB-INF/views/"/>
-		<!--  접미어 -->
-		<property name ="suffix" value = ".jsp"/>
-		<!--  ViewResolver 여러개 등록 가능 , 우선순위 지정가능 -->
-		<property name = "order" value = "1"/>
+	
+	<!-- Oracle Data Source -->
+	<bean id="oracleDataSource"
+		class="oracle.jdbc.pool.OracleDataSource"
+		destroy-method="close">
+		<property name="URL"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="user" value="c##jm" />	
+		<property name="password" value="1234" />
+		<property name="connectionCachingEnabled" 
+			value="true" />
+		<qualifier value="main-db" />
 	</bean>
+	
+	<!-- MyBatis SqlSessionFactoryBean 등록 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource"	ref="oracleDataSource" />
+		<!-- 설정 파일 -->
+		<property name="configLocation" value="classpath:mybatis/configuration.xml" />
+	</bean>
+	
+	<!-- MyBatis SqlSessionTemplate 등록 -->
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
 </beans>

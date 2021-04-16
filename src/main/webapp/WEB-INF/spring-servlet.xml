@@ -11,4 +11,31 @@
 	<!-- 컴포넌트 자동등록 -->
 	<context:component-scan base-package="com.bitacademy.myportal.contoller"></context:component-scan>
 	
+	<mvc:annotation-driven>
+		<!--  메세지 컨버터  -->
+		<mvc:message-converters>
+			<bean class= "org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<!-- 컨버터가 지원할 미디어 타입 -->
+				<property name="supportedMediaTypes">
+					<list>
+						<!-- Map, 자바 빈 객체 JSON으로 변환  -->
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			
+		</mvc:message-converters>
+	</mvc:annotation-driven><!-- DefaultServlet에게 위임 -->
+	<mvc:default-servlet-handler/> <!--  정적 자원 처리 담당 -->
+	<!-- View Resolver -->
+	<bean id="viewResolver"
+		class= "org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name ="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<!-- Viewname 접두어 -->	
+		<property name ="prefix" value="/WEB-INF/views/"/>
+		<!--  접미어 -->
+		<property name ="suffix" value = ".jsp"/>
+		<!--  ViewResolver 여러개 등록 가능 , 우선순위 지정가능 -->
+		<property name = "order" value = "1"/>
+	</bean>
 </beans>

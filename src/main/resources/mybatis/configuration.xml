@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- MyBatis 설정 -->
+<configuration>
+	<typeAliases>
+		<typeAlias alias="guestbookVo" type="com.bitacademy.myportal.vo.GuestbookVo" />
+		<typeAlias alias="memberVo"
+			type="com.bitacademy.myportal.vo.MemberVo"/>
+	</typeAliases>
+	<mappers>
+		<!-- guestbook에 관련된 매퍼 설정 -->
+		<mapper resource="mybatis/mappers/guestbook.xml" />
+		<!-- members에 관련된 매퍼 설정 -->
+		<mapper resource="mybatis/mappers/members.xml"/> 
+	</mappers>
+</configuration>
