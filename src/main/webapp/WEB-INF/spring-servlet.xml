@@ -38,4 +38,25 @@
 		<!--  ViewResolver 여러개 등록 가능 , 우선순위 지정가능 -->
 		<property name = "order" value = "1"/>
 	</bean>
+	
+	<!--  Interceptors  -->
+	<mvc:interceptors>
+		<!--  순서대로 적용 -->
+		<!-- <mvc:interceptor>
+			 /board 하위 모든 url에 Interceptor 적용 
+			<mvc:mapping path="/board/**"/>
+			<bean class="com.bitacademy.myportal.interceptors.MyInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/board/**"/>
+			<bean class="com.bitacademy.myportal.interceptors.MyInterceptors2"/>
+		</mvc:interceptor> -->
+		<mvc:interceptor>
+			<mvc:mapping path="/board/**"/>
+			<mvc:exclude-mapping path="/board/list/**"/> 
+			<mvc:exclude-mapping path="/board/"/> 
+			<mvc:exclude-mapping path="/board"/> 
+			<bean class="com.bitacademy.myportal.interceptors.AuthInterceptor"/>
+		</mvc:interceptor>		
+	</mvc:interceptors>
 </beans>
